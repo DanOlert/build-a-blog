@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<hr />
+<section>
+<form method='post' action='/posted'>
+    <td><p>Title:  <input type="text" name='title'/><span class="error">{{ e1 }}</span></p></td>
+
+    <td><p>Body: <input type="text" name='post'/>
+    <input type="submit" value='Post' /><span class="error">{{ e2 }}</span>
+    </p></td>
+
+</form>
+
+</section>
+<hr />
+
+{% endblock %}

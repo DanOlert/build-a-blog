@@ -3,14 +3,9 @@
 {% block content %}
     <h1>Blogosphere!</h1>
     <hr />
-    <section>
-    <form method='post'>
-        <p>        Title:  <input type="text" name='title'/></p>
-        <p>
-        Body: <input type="text" name='post'/>
-        <input type="submit" value='Post' />
-        </p>
-        </section>
+
+    <form method="POST" action="/posting" style="display:inline-block;">
+        <input type="submit" value="Post" />
     </form>
 
     <hr />
@@ -21,15 +16,17 @@
 
             {% for post in posts %}
             <section>
-            <h3>{{post.title}}</h3>
-            <p>{{post.name}}</p>
+                    <a href="/view?id={{post.id}}" name='post-id' value="{{post.id}}"><h3>{{post.title}}</h3></a>
+                    <p>{{post.name}}</p>
                 <form method="POST" action="/delete-post" style="display:inline-block;">
                     <input type="hidden" name="post-id" value="{{post.id}}" />
                     <input type="submit" value="Delete" />
                 </form>
                     {% if post.completed == False %}
                     <form method="POST" action="/like-post" style="display:inline-block;">
+                        <input type="hidden" name="post-id" value="{{post.id}}" />
                         <input type="submit" value="Like" />
+                    </form>
                     {% else %}
                         Liked!
                     {% endif %}
